@@ -13,6 +13,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@types/vue-router": "^2.0.0",
     "bootstrap": "^5.3.3",
     "bootstrap-vue": "^2.23.1",
     "vue": "^3.4.31",
