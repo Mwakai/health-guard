@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5000;
 
 sequelize.sync();
 
-app.post("api/register", async (req, res) => {
+app.post("/api/register", async (req, res) => {
   const { name, email, password } = req.body;
 
   try {
@@ -25,17 +25,13 @@ app.post("api/register", async (req, res) => {
       password: hashedPassword,
     });
 
-    res.status(200).json({
-      message: "User registered successfully",
-    });
+    res.status(200).json({ message: "User registered successfully!" });
   } catch (error) {
-    console.error("Error registering user", error);
-    res.status(500).json({
-      error: "Error registering user",
-    });
+    console.error("Error registering user:", error);
+    res.status(500).json({ error: "Error registering user" });
   }
 });
 
 app.listen(PORT, () => {
-  console.log("Server is running on port ${PORT}");
+  console.log(`Server is running on port ${PORT}`);
 });
