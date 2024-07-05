@@ -16,6 +16,23 @@ const User = sequelize.define("User", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+
+  age: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+  },
+  height: {
+    type: DataTypes.FLOAT,
+    allowNull: true,
+  },
+  weight: {
+    type: DataTypes.FLOAT,
+    allowNull: true,
+  },
+  allergies: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
 });
 
 module.exports = User;
