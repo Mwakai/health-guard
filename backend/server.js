@@ -68,9 +68,7 @@ app.post("/api/questionnaire", async (req, res) => {
   const { email, age, height, weight, allergies } = req.body;
 
   try {
-    const user = await User.findOne({
-      where: { email },
-    });
+    const user = await User.findOne({ where: { email } });
 
     if (!user) {
       return res.status(404).json({ error: "User not found" });
@@ -86,8 +84,12 @@ app.post("/api/questionnaire", async (req, res) => {
       .status(200)
       .json({ message: "Questionnaire submitted successfully", user });
   } catch (error) {
-    console.log("Error submitting quest", error);
-    res.status(500).json({ error: "Error submitting" });
+    console.error("Error details:", {
+      message: error.message,
+      stack: error.stack,
+      input: { email, age, height, weight, allergies },
+    });
+    res.status(500).json({ error: "Error submitting questionnaire" });
   }
 });
 

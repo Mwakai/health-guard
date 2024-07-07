@@ -23,6 +23,11 @@ const routes = [
     path: '/dashboard',
     name: 'Dashboard',
     component: () => import('../views/Dashboard.vue') // Placeholder for dashboard component
+  },
+  {
+    path: '/questionnaire',
+    name: 'Questionnaire',
+    component: () => import('../views/Questionnaire.vue') // Placeholder for dashboard component
   }
 ]
 
