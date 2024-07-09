@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Landingpage from '../components/Landingpage.vue'
 import Register from '../views/auth/Register.vue'
 import Login from '../views/auth/Login.vue'
+import Questionnaire from '../views/Questionnaire.vue'
+import Dashboard from '../views/Dashboard.vue'
 
 const routes = [
   {
@@ -20,14 +22,14 @@ const routes = [
     component: Login
   },
   {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: () => import('../views/Dashboard.vue') // Placeholder for dashboard component
-  },
-  {
     path: '/questionnaire',
     name: 'Questionnaire',
-    component: () => import('../views/Questionnaire.vue') // Placeholder for dashboard component
+    component: Questionnaire
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: Dashboard
   }
 ]
 

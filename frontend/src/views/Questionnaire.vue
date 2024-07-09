@@ -4,7 +4,7 @@ import axios from 'axios'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-const email = ref('john.doe@example.com') // Make sure this email matches an existing user
+const email = ref('') // You can pass the email from the login or registration process
 const age = ref<number | null>(null)
 const height = ref<number | null>(null)
 const weight = ref<number | null>(null)

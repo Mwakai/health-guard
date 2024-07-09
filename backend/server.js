@@ -11,11 +11,9 @@ app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 5000;
 
+// Sync the database
 sequelize.sync();
 
-/**
- * REGISTER USERS
- */
 app.post("/api/register", async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -35,9 +33,6 @@ app.post("/api/register", async (req, res) => {
   }
 });
 
-/**
- * LOGIN USERS
- */
 app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -61,9 +56,6 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
-/**
- * QUESTIONNAIRE
- */
 app.post("/api/questionnaire", async (req, res) => {
   const { email, age, height, weight, allergies } = req.body;
 
@@ -84,25 +76,32 @@ app.post("/api/questionnaire", async (req, res) => {
       .status(200)
       .json({ message: "Questionnaire submitted successfully", user });
   } catch (error) {
-    console.error("Error details:", {
-      message: error.message,
-      stack: error.stack,
-      input: { email, age, height, weight, allergies },
-    });
+    console.error("Error submitting questionnaire:", error);
     res.status(500).json({ error: "Error submitting questionnaire" });
   }
 });
 
-/**
- * FETCH DATA
- */
 app.get("/api/user", async (req, res) => {
   const { email } = req.query;
+
+  try {
+    const user = await User.findOne({ where: { email } });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.status(200).json({ user });
+  } catch (error) {
+    console.error("Error fetching user:", error);
+    res.status(500).json({ error: "Error fetching user" });
+  }
 });
 
-app.get("", async (req, res) => {
+app.get("/api/recommendations", async (req, res) => {
   const { age, height, weight, allergies } = req.query;
 
+  // Replace with actual logic to fetch recommendations based on user data
   const recommendations = [
     {
       id: 1,
