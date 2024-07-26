@@ -17,7 +17,7 @@ const loginUser = async () => {
     const user = response.data.user
 
     if (!user.age || !user.height || !user.weight || !user.allergies) {
-      router.push('/questionnaire')
+      router.push({ name: 'Questionnaire', query: { email: email.value } })
     } else {
       router.push('/dashboard')
     }
