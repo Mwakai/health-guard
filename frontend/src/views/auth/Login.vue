@@ -13,9 +13,14 @@ const loginUser = async () => {
       email: email.value,
       password: password.value
     })
-    console.log(response.data.message)
-    // Handle successful login (e.g., redirect to dashboard)
-    router.push('/dashboard')
+
+    const user = response.data.user
+
+    if (!user.age || !user.height || !user.weight || !user.allergies) {
+      router.push({ name: 'Questionnaire', query: { email: email.value } })
+    } else {
+      router.push('/dashboard')
+    }
   } catch (error) {
     console.error('Error logging in user:', error)
     if (error.response) {
