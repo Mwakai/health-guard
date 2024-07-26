@@ -41,3 +41,9 @@
 .navbar-button:hover {
   background-color: var(--accent);
 }
+
+.light-mode {
+  background-color: #fff;
+  color: #000;
+  /* Add other light mode styles as needed */
+}
